@@ -193,9 +193,10 @@ const snorlaxStats = {
   weight: 4600,
 };
 
-const extractStats = (arr) => {
-  // Solution code here...
-};
+const extractStats = (arr) => arr.map(stat => ({
+  name: stat.stat.name,
+  total: stat.effort + stat.baseStat
+}));
 
 /* ------------------------------------------------------------------------------------------------
 TESTS
