@@ -32,9 +32,7 @@ Write a function named containsAnd that, given an array of strings as input, use
 For example, containsAnd(['panda', 'ran', 'and']) returns ['panda', 'and'].
 ------------------------------------------------------------------------------------------------ */
 
-const containsAnd = (arr) => {
-  // Solution code here...
-};
+const containsAnd = (arr) => arr.filter(item => item.toLowerCase().includes('and'));
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 4
