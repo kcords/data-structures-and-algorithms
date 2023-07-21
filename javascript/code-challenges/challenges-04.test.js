@@ -108,6 +108,7 @@ const alphabetizeBetter = (arr) => {
   return arr.sort(new Intl.Collator("en").compare);
 };
 
+//https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/Collator
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 8 - Stretch Goal
 
