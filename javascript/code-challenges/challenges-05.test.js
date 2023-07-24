@@ -263,9 +263,11 @@ const snorlaxData = {
   weight: 4600,
 };
 
-const extractStats = (snorlaxData) => {
-  // Solution code here...
-};
+const extractStats = (snorlaxData) =>
+  snorlaxData.stats.reduce((obj, { stat, baseStat }) => {
+    obj[stat.name] = baseStat;
+    return obj;
+  }, {});
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 11 - Stretch Goal
@@ -365,7 +367,7 @@ describe("Testing challenge 9", () => {
   });
 });
 
-xdescribe("Testing challenge 10", () => {
+describe("Testing challenge 10", () => {
   test("It should return an object that contains the names of each stat as individual keys and the respective baseStats as values to those keys.", () => {
     expect(extractStats(snorlaxData)).toStrictEqual({
       speed: 30,
