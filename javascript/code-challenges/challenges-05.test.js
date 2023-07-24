@@ -39,7 +39,7 @@ Write a function named addPurchases that, given an array of objects as input, us
 ------------------------------------------------------------------------------------------------ */
 
 const addPurchases = (arr) => {
-  // Solution code here...
+  return arr.reduce((total, purchase) => total + purchase.purchasePrice, 0);
 };
 
 /* ------------------------------------------------------------------------------------------------
