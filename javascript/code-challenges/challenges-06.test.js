@@ -22,9 +22,8 @@ For example:
 Returns: ['dyoll', 'eimaj'];
 ------------------------------------------------------------------------------------------------ */
 
-const getNames = (arr) => {
-  // Solution code here...
-};
+const getNames = (arr) =>
+  arr.map(({ name }) => Array.from(name).reduce((reversed, char) => char + reversed), '');
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 2
