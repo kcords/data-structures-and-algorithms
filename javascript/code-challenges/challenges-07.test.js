@@ -60,7 +60,10 @@ For example, if the input is 'Welcome', the output will be:
 
 const howMuchPencil = (str) => {
   let result = [];
-  // Solution code here...
+  for (let idx = 0; idx < str.length; idx += 1) {
+    result.push(str.slice(idx));
+  }
+  result.push('');
   return result;
 };
 
