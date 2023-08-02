@@ -52,9 +52,13 @@ let characters = [
   },
 ];
 
-const sortByChildren = (charArray) => {
-  // Solution code here...
-};
+const sortByChildren = (charArray) =>
+  charArray.sort((a, b) => {
+    if (a.children.length === b.children.length) {
+      return a.name < b.name ? -1 : 1;
+    }
+    return a.children.length < b.children.length ? -1 : 1;
+  });
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 2
