@@ -97,7 +97,8 @@ Write a function named containsWorld that takes in a string or number of any len
 ------------------------------------------------------------------------------------------------ */
 
 const containsWorld = (input) => {
-  // Solution code here...
+  const regex = /world/;
+  return regex.test(input);
 };
 
 /* ------------------------------------------------------------------------------------------------
