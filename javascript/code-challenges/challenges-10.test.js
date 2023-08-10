@@ -45,9 +45,11 @@ For example:
 
 return: 35
 ------------------------------------------------------------------------------------------------ */
-const totalSum = (matrix) => {
-  // Solution code here...
-};
+const totalSum = (matrix) =>
+  matrix.reduce(
+    (sum, row) => sum + row.reduce((rowSum, value) => rowSum + value, 0),
+    0
+  );
 
 
 /* ------------------------------------------------------------------------------------------------
