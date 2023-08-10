@@ -125,8 +125,11 @@ const errands = [
 ];
 
 const howManyTreats = (arr) => {
-  // Solution code here...
+  const [{ items }] = arr.filter(({ store }) => store === "Pet store");
+  const [{ quantity }] = items.filter(({ name }) => name === "Treats");
+  return quantity;
 };
+
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 7 - Stretch Goal
