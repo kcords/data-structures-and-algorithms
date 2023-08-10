@@ -23,9 +23,13 @@ For example:
 
 return: 23
 ------------------------------------------------------------------------------------------------ */
-const findMax = (matrix) => {
-  // Solution code here...
-};
+const findMax = (matrix) =>
+  matrix.reduce((max, row) => {
+    for (let value of row) {
+      if (value > max) max = value;
+    }
+    return max;
+  }, -Infinity);
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 3
