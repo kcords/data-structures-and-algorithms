@@ -199,9 +199,12 @@ let lowestWeeklyTemperatureData = [
   [65, 56, 55, 52, 55, 62, 57],
 ];
 
-const lowestWeeklyAverage = (weather) => {
-  // Solution code here...
-};
+const lowestWeeklyAverage = (weather) =>
+  weather.reduce(
+    (lowest, week) =>
+      Math.min(lowest, week.reduce((sum, daily) => sum + daily, 0) / 7),
+    Infinity
+  );
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 11 - Stretch Goal
@@ -360,8 +363,8 @@ describe("Testing challenge 9", () => {
   });
 });
 
-xdescribe('Testing challenge 10', () => {
-  test('It should return the lowest weekly average temperature within the data set', () => {
+describe("Testing challenge 10", () => {
+  test("It should return the lowest weekly average temperature within the data set", () => {
     expect(lowestWeeklyAverage(weeklyTemperatures)).toStrictEqual(57);
     expect(lowestWeeklyAverage(lowestWeeklyTemperatureData)).toStrictEqual(46);
   });
