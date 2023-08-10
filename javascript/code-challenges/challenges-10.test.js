@@ -161,9 +161,12 @@ Write a function named calculateProduct that takes in a two-dimensional array of
 For example, the following input returns a product of 720: [[1,2], [3,4], [5,6]]
 ------------------------------------------------------------------------------------------------ */
 
-const calculateProduct = (numbers) => {
-  // Solution code here...
-};
+const calculateProduct = (numbers) =>
+  numbers.reduce(
+    (product, row) =>
+      product * row.reduce((rowProduct, number) => rowProduct * number, 1),
+    1
+  );
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 9 - Stretch Goal
@@ -332,15 +335,27 @@ describe("Testing challenge 7", () => {
   });
 });
 
-xdescribe('Testing challenge 8', () => {
-  test('It should multiply all the numbers together', () => {
-    expect(calculateProduct([[1, 2], [3, 4], [5, 6]])).toStrictEqual(720);
+describe("Testing challenge 8", () => {
+  test("It should multiply all the numbers together", () => {
+    expect(
+      calculateProduct([
+        [1, 2],
+        [3, 4],
+        [5, 6],
+      ])
+    ).toStrictEqual(720);
   });
 
-  test('It should return zero if there are any zeroes in the data', () => {
-    expect(calculateProduct([[2, 3, 4, 6, 0], [4, 3, 7], [2, 4, 6]])).toStrictEqual(0);
+  test("It should return zero if there are any zeroes in the data", () => {
+    expect(
+      calculateProduct([
+        [2, 3, 4, 6, 0],
+        [4, 3, 7],
+        [2, 4, 6],
+      ])
+    ).toStrictEqual(0);
   });
-  test('It should work even if some of the arrays contain no numbers', () => {
+  test("It should work even if some of the arrays contain no numbers", () => {
     expect(calculateProduct([[1, 2], [], [3, 4, 5]])).toStrictEqual(120);
   });
 });
