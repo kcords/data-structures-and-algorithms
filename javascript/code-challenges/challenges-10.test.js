@@ -150,7 +150,7 @@ The top row of the board is considered row zero and row numbers increase as they
 ------------------------------------------------------------------------------------------------ */
 
 const battleship = (board, row, col) => {
-  //  Solution code here...
+  return board?.[row]?.[col] === "#" ? "hit" : "miss";
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -233,75 +233,102 @@ Run your tests from the console: jest challenge-12.test.js
 
 ------------------------------------------------------------------------------------------------ */
 
-describe('Testing challenge 1', () => {
-  test('it should return the last 10 characters of a string as an array', () => {
-    expect(returnTen('hello world')).toStrictEqual(['e','l','l','o',' ','w','o','r','l','d']);
-    expect(returnTen('world')).toStrictEqual(['w','o','r','l','d']);
+describe("Testing challenge 1", () => {
+  test("it should return the last 10 characters of a string as an array", () => {
+    expect(returnTen("hello world")).toStrictEqual([
+      "e",
+      "l",
+      "l",
+      "o",
+      " ",
+      "w",
+      "o",
+      "r",
+      "l",
+      "d",
+    ]);
+    expect(returnTen("world")).toStrictEqual(["w", "o", "r", "l", "d"]);
   });
 });
 
-describe('Testing challenge 2', () => {
-  test('It should return the max value', () => {
-    expect(findMax([[13,24,24,2], [2,5,6], [2,3]])).toStrictEqual(24);
+describe("Testing challenge 2", () => {
+  test("It should return the max value", () => {
+    expect(
+      findMax([
+        [13, 24, 24, 2],
+        [2, 5, 6],
+        [2, 3],
+      ])
+    ).toStrictEqual(24);
   });
 });
 
-describe('Testing challenge 3', () => {
-  test('It should return the total sum', () => {
-    expect(totalSum([[13,24,24,2], [2,5,6], [2,3]])).toStrictEqual(81);
+describe("Testing challenge 3", () => {
+  test("It should return the total sum", () => {
+    expect(
+      totalSum([
+        [13, 24, 24, 2],
+        [2, 5, 6],
+        [2, 3],
+      ])
+    ).toStrictEqual(81);
     expect(totalSum([])).toStrictEqual(0);
   });
 });
 
-describe('Testing challenge 4', () => {
-  test('It should add the hourly totals array', () => {
-    expect(grandTotal(cookieStores)).toStrictEqual([88, 153, 252, 286, 139, 161, 145, 232, 276, 207, 161, 169]);
+describe("Testing challenge 4", () => {
+  test("It should add the hourly totals array", () => {
+    expect(grandTotal(cookieStores)).toStrictEqual([
+      88, 153, 252, 286, 139, 161, 145, 232, 276, 207, 161, 169,
+    ]);
   });
 });
 
-describe('Testing challenge 5', () => {
-  test('It should create an object of data for each store', () => {
+describe("Testing challenge 5", () => {
+  test("It should create an object of data for each store", () => {
     expect(salesData(hoursOpen, grandTotal(cookieStores))).toStrictEqual([
-      { sales: '88 cookies', time: '9 a.m.' },
-      { sales: '153 cookies', time: '10 a.m.' },
-      { sales: '252 cookies', time: '11 a.m.' },
-      { sales: '286 cookies', time: '12 p.m.' },
-      { sales: '139 cookies', time: '1 p.m.' },
-      { sales: '161 cookies', time: '2 p.m.' },
-      { sales: '145 cookies', time: '3 p.m.' },
-      { sales: '232 cookies', time: '4 p.m.' },
-      { sales: '276 cookies', time: '5 p.m.' },
-      { sales: '207 cookies', time: '6 p.m.' },
-      { sales: '161 cookies', time: '7 p.m.' },
-      { sales: '169 cookies', time: '8 p.m.' }
+      { sales: "88 cookies", time: "9 a.m." },
+      { sales: "153 cookies", time: "10 a.m." },
+      { sales: "252 cookies", time: "11 a.m." },
+      { sales: "286 cookies", time: "12 p.m." },
+      { sales: "139 cookies", time: "1 p.m." },
+      { sales: "161 cookies", time: "2 p.m." },
+      { sales: "145 cookies", time: "3 p.m." },
+      { sales: "232 cookies", time: "4 p.m." },
+      { sales: "276 cookies", time: "5 p.m." },
+      { sales: "207 cookies", time: "6 p.m." },
+      { sales: "161 cookies", time: "7 p.m." },
+      { sales: "169 cookies", time: "8 p.m." },
     ]);
 
-    expect(salesData(hoursOpen, grandTotal(cookieStores)).length).toStrictEqual(hoursOpen.length);
+    expect(salesData(hoursOpen, grandTotal(cookieStores)).length).toStrictEqual(
+      hoursOpen.length
+    );
   });
 });
 
-describe('Testing challenge 6', () => {
-  test('It should return the number 24', () => {
+describe("Testing challenge 6", () => {
+  test("It should return the number 24", () => {
     expect(howManyTreats(errands)).toStrictEqual(24);
   });
 });
 
-xdescribe('Testing challenge 7', () => {
+describe("Testing challenge 7", () => {
   const battleshipData = [
-    ['#', ' ', '#', ' '],
-    ['#', ' ', '#', ' '],
-    ['#', ' ', ' ', ' '],
-    [' ', ' ', '#', '#'],
+    ["#", " ", "#", " "],
+    ["#", " ", "#", " "],
+    ["#", " ", " ", " "],
+    [" ", " ", "#", "#"],
   ];
 
   test('It should return "hit" when it hits a boat', () => {
-    expect(battleship(battleshipData, 0, 0)).toStrictEqual('hit');
-    expect(battleship(battleshipData, 1, 0)).toStrictEqual('hit');
+    expect(battleship(battleshipData, 0, 0)).toStrictEqual("hit");
+    expect(battleship(battleshipData, 1, 0)).toStrictEqual("hit");
   });
 
   test('It should return "miss" when it doesn\'t hit a boat', () => {
-    expect(battleship(battleshipData, 0, 1)).toStrictEqual('miss');
-    expect(battleship(battleshipData, 3, 0)).toStrictEqual('miss');
+    expect(battleship(battleshipData, 0, 1)).toStrictEqual("miss");
+    expect(battleship(battleshipData, 3, 0)).toStrictEqual("miss");
   });
 });
 
