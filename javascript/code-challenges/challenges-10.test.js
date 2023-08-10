@@ -184,19 +184,13 @@ const weeklyTemperatures = [
   [65, 56, 55, 52, 55, 62, 57],
 ];
 
-const averageDailyTemperature = (weather) => {
-  // Solution code here...
-};
-
-/* ------------------------------------------------------------------------------------------------
-CHALLENGE 10 - Stretch Goal
-
-Write a function named lowestWeeklyAverage that accepts a two-dimensional array of daily temperatures grouped week-by-week.
-
-Calculate the average temperature for each week and return the value of the lowest weekly average temperature.
-
-For example, in the data set below, the lowest weekly average is 46, which is the average of the temperatures in week 2. All other weeks have average temperatures that are greater than 46.
------------------------------------------------------------------------------------------------- */
+const averageDailyTemperature = (weather) =>
+  weather.reduce(
+    (sum, week) =>
+      sum + week.reduce((weekSum, dailyAvg) => weekSum + dailyAvg, 0),
+    0
+  ) /
+  (weather.length * 7);
 
 let lowestWeeklyTemperatureData = [
   [33, 64, 58, 65, 71, 57, 60],
@@ -360,8 +354,8 @@ describe("Testing challenge 8", () => {
   });
 });
 
-xdescribe('Testing challenge 9', () => {
-  test('It should calculate and return the average temperature of the data set', () => {
+describe("Testing challenge 9", () => {
+  test("It should calculate and return the average temperature of the data set", () => {
     expect(averageDailyTemperature(weeklyTemperatures)).toStrictEqual(60.25);
   });
 });
