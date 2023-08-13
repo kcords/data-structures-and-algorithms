@@ -30,9 +30,10 @@ Note: You might need to use the same method more than once.
 For example, count(5, [[1, 3, 5, 7, 9], [5, 5, 5], [1, 2, 3]]) returns 4.
 ------------------------------------------------------------------------------------------------ */
 
-const count = (target, input) => {
-  // Solution code here...
-};
+const count = (target, input) =>
+  input.reduce((count, arr) =>
+    count + arr.filter(val =>
+      val === target).length, 0);
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 3
