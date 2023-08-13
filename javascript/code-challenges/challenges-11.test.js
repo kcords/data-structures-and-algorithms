@@ -45,9 +45,10 @@ You may want to use filter, map, or reduce for this problem, but are not require
 For example, [[1, 2, 3, 4, 5], [6, 7, 2, 4, 5, 7], [9, 2, 3, 6,]] returns 66.
 ------------------------------------------------------------------------------------------------ */
 
-const totalSum = (input) => {
-  // Solution code here...
-};
+const totalSum = (input) =>
+  input.reduce((sum, arr) =>
+    sum + arr.reduce((currSum, val) =>
+      currSum + val, 0), 0);
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 4
