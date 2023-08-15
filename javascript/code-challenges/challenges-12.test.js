@@ -103,8 +103,14 @@ For example, findTagNames(['<h1>Hello, world!</h1>', '<p>Welcome to my site</p>'
 findTagNames(['<div><h1>Hello, world!</h1></div>', '<p>Welcome to my site</p>']) returns ['/h1', '/div', '/p'].
 ------------------------------------------------------------------------------------------------ */
 
-const findTagNames = elements => {
-  // Solution code here...
+const findTagNames = (elements) => {
+  const regex = /(<(\/.*?)>)/gi;
+  return elements.reduce((tags, element) => {
+    const matches = [...element.matchAll(regex)];
+    const capturedContent = matches.map((match) => match[2]);
+    tags.push(...capturedContent);
+    return tags;
+  }, []);
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -117,110 +123,119 @@ DO NOT CHANGE any of the below code.
 Run your tests from the console: jest solutions-11.test.js
 ------------------------------------------------------------------------------------------------ */
 
-describe('Testing challenge 1', () => {
+describe("Testing challenge 1", () => {
   test('It should replace all the 0\'s with the word "zero"', () => {
-    expect(replaceZeros('301 is s0 much fun!')).toStrictEqual('3zero1 is szero much fun!');
+    expect(replaceZeros("301 is s0 much fun!")).toStrictEqual(
+      "3zero1 is szero much fun!"
+    );
   });
 });
 
-describe('Testing challenge 2', () => {
-  test('It should validate a PIN of exactly four digits', () => {
+describe("Testing challenge 2", () => {
+  test("It should validate a PIN of exactly four digits", () => {
     expect(validatePin(1234)).toBeTruthy();
     expect(validatePin(123)).toBeFalsy();
     expect(validatePin(12345)).toBeFalsy();
-    expect(validatePin('abcd')).toBeFalsy();
-    expect(validatePin('7890')).toBeTruthy();
-    expect(validatePin('0789')).toBeTruthy();
+    expect(validatePin("abcd")).toBeFalsy();
+    expect(validatePin("7890")).toBeTruthy();
+    expect(validatePin("0789")).toBeTruthy();
     expect(validatePin(789)).toBeFalsy();
-    expect(validatePin('0000')).toBeTruthy();
+    expect(validatePin("0000")).toBeTruthy();
   });
 });
 
-describe('Testing challenge 3', () => {
-  test('It should validate a word between 5 and 10 characters', () => {
-    expect(validateWord('Hello')).toBeTruthy();
-    expect(validateWord('Bob')).toBeFalsy();
+describe("Testing challenge 3", () => {
+  test("It should validate a word between 5 and 10 characters", () => {
+    expect(validateWord("Hello")).toBeTruthy();
+    expect(validateWord("Bob")).toBeFalsy();
     expect(validateWord(12345)).toBeFalsy();
-    expect(validateWord('abcdefghijkl')).toBeFalsy();
-    expect(validateWord('cookie')).toBeTruthy();
+    expect(validateWord("abcdefghijkl")).toBeFalsy();
+    expect(validateWord("cookie")).toBeTruthy();
     expect(validateWord(789)).toBeFalsy();
-    expect(validateWord('Code301')).toBeFalsy();
+    expect(validateWord("Code301")).toBeFalsy();
   });
 });
 
-describe('Testing challenge 4', () => {
-  test('It should return true if a string has one or more word characters followed by one or more digits', () => {
-    expect(hasNumber('Hell0')).toBeTruthy();
-    expect(hasNumber('Bob')).toBeFalsy();
+describe("Testing challenge 4", () => {
+  test("It should return true if a string has one or more word characters followed by one or more digits", () => {
+    expect(hasNumber("Hell0")).toBeTruthy();
+    expect(hasNumber("Bob")).toBeFalsy();
     expect(hasNumber(12345)).toBeFalsy();
-    expect(hasNumber('abcdefghijkl')).toBeFalsy();
-    expect(hasNumber('c00kie')).toBeTruthy();
+    expect(hasNumber("abcdefghijkl")).toBeFalsy();
+    expect(hasNumber("c00kie")).toBeTruthy();
     expect(hasNumber(789)).toBeFalsy();
-    expect(hasNumber('Code301')).toBeTruthy();
-    expect(hasNumber('99Code')).toBeFalsy();
+    expect(hasNumber("Code301")).toBeTruthy();
+    expect(hasNumber("99Code")).toBeFalsy();
   });
 });
 
-describe('Testing challenge 5', () => {
-  test('It should match a basic email', () => {
-    expect(validateEmail('joe@codefellows.com')).toBeTruthy();
+describe("Testing challenge 5", () => {
+  test("It should match a basic email", () => {
+    expect(validateEmail("joe@codefellows.com")).toBeTruthy();
   });
 
-  test('It should match if the email contains a period', () => {
-    expect(validateEmail('joe.schmoe@codefellows.net')).toBeTruthy();
+  test("It should match if the email contains a period", () => {
+    expect(validateEmail("joe.schmoe@codefellows.net")).toBeTruthy();
   });
 
-  test('It should match if the email contains other top-level domains', () => {
-    expect(validateEmail('joe@codefellows.org')).toBeTruthy();
+  test("It should match if the email contains other top-level domains", () => {
+    expect(validateEmail("joe@codefellows.org")).toBeTruthy();
   });
 
-  test('It should match if the email contains a period and other top-level domains', () => {
-    expect(validateEmail('joe.schmoe@codefellows.net')).toBeTruthy();
+  test("It should match if the email contains a period and other top-level domains", () => {
+    expect(validateEmail("joe.schmoe@codefellows.net")).toBeTruthy();
   });
 
-  test('It should fail things that aren\'t email addresses', () => {
-    expect(validateEmail('justastring')).toBeFalsy();
-    expect(validateEmail('missing@adomain')).toBeFalsy();
-    expect(validateEmail('@noname.com')).toBeFalsy();
-    expect(validateEmail('.@noname.com')).toBeFalsy();
-    expect(validateEmail('nolastname.@sadness.net')).toBeFalsy();
-    expect(validateEmail('canadaisnotreal@canada.ca')).toBeFalsy();
-    expect(validateEmail('needadot@inthesecondpart')).toBeFalsy();
-    expect(validateEmail('missing.atsymbol.net')).toBeFalsy();
-    expect(validateEmail('looksgood@sofar.comohnowaitthisisbad')).toBeFalsy();
-    expect(validateEmail('no.middle.names@foryou.com')).toBeFalsy();
+  test("It should fail things that aren't email addresses", () => {
+    expect(validateEmail("justastring")).toBeFalsy();
+    expect(validateEmail("missing@adomain")).toBeFalsy();
+    expect(validateEmail("@noname.com")).toBeFalsy();
+    expect(validateEmail(".@noname.com")).toBeFalsy();
+    expect(validateEmail("nolastname.@sadness.net")).toBeFalsy();
+    expect(validateEmail("canadaisnotreal@canada.ca")).toBeFalsy();
+    expect(validateEmail("needadot@inthesecondpart")).toBeFalsy();
+    expect(validateEmail("missing.atsymbol.net")).toBeFalsy();
+    expect(validateEmail("looksgood@sofar.comohnowaitthisisbad")).toBeFalsy();
+    expect(validateEmail("no.middle.names@foryou.com")).toBeFalsy();
   });
 });
 
-describe('Testing challenge 6', () => {
-  test('It should match the acceptable phone number formats', () => {
-    expect(validatePhoneNumber('(555) 555-5555')).toBeTruthy();
-    expect(validatePhoneNumber('555 555-5555')).toBeTruthy();
-    expect(validatePhoneNumber('555-555-5555')).toBeTruthy();
-    expect(validatePhoneNumber('555 5555555')).toBeTruthy();
-    expect(validatePhoneNumber('5555555555')).toBeTruthy();
-    expect(validatePhoneNumber('234 567 8910')).toBeTruthy();
+describe("Testing challenge 6", () => {
+  test("It should match the acceptable phone number formats", () => {
+    expect(validatePhoneNumber("(555) 555-5555")).toBeTruthy();
+    expect(validatePhoneNumber("555 555-5555")).toBeTruthy();
+    expect(validatePhoneNumber("555-555-5555")).toBeTruthy();
+    expect(validatePhoneNumber("555 5555555")).toBeTruthy();
+    expect(validatePhoneNumber("5555555555")).toBeTruthy();
+    expect(validatePhoneNumber("234 567 8910")).toBeTruthy();
   });
-  test('It should not match unacceptable phone number formats', () => {
-    expect(validatePhoneNumber('abcdefghij')).toBeFalsy();
-    expect(validatePhoneNumber('222 222 2222 ext. 2222')).toBeFalsy();
-    expect(validatePhoneNumber('(222 222-2222')).toBeFalsy();
-    expect(validatePhoneNumber('222 222-2222-')).toBeFalsy();
-    expect(validatePhoneNumber('(222 222- 2222')).toBeFalsy();
-    expect(validatePhoneNumber('(222 222 -2222')).toBeFalsy();
-    expect(validatePhoneNumber('523 555--5555')).toBeFalsy();
-    expect(validatePhoneNumber('55555555555')).toBeFalsy();
-    expect(validatePhoneNumber('55555555555')).toBeFalsy();
-    expect(validatePhoneNumber('55555555555')).toBeFalsy();
-    expect(validatePhoneNumber('55_55_5555')).toBeFalsy();
+  test("It should not match unacceptable phone number formats", () => {
+    expect(validatePhoneNumber("abcdefghij")).toBeFalsy();
+    expect(validatePhoneNumber("222 222 2222 ext. 2222")).toBeFalsy();
+    expect(validatePhoneNumber("(222 222-2222")).toBeFalsy();
+    expect(validatePhoneNumber("222 222-2222-")).toBeFalsy();
+    expect(validatePhoneNumber("(222 222- 2222")).toBeFalsy();
+    expect(validatePhoneNumber("(222 222 -2222")).toBeFalsy();
+    expect(validatePhoneNumber("523 555--5555")).toBeFalsy();
+    expect(validatePhoneNumber("55555555555")).toBeFalsy();
+    expect(validatePhoneNumber("55555555555")).toBeFalsy();
+    expect(validatePhoneNumber("55555555555")).toBeFalsy();
+    expect(validatePhoneNumber("55_55_5555")).toBeFalsy();
   });
 });
 
-xdescribe('Testing challenge 7', () => {
-  test('It should return the closing tags', () => {
-    expect(findTagNames(['<h1>Hello, world!</h1>', '<p>Welcome to my site</p>'])).toStrictEqual(['/h1', '/p']);
+describe("Testing challenge 7", () => {
+  test("It should return the closing tags", () => {
+    expect(
+      findTagNames(["<h1>Hello, world!</h1>", "<p>Welcome to my site</p>"])
+    ).toStrictEqual(["/h1", "/p"]);
   });
-  test('It should work if there are multiple closing tags in a single string', () => {
-    expect(findTagNames(['<div><h1>Hello, world!</h1></div>', '<p>Welcome to my site</p>'])).toStrictEqual(['/h1', '/div', '/p']);
+  test("It should work if there are multiple closing tags in a single string", () => {
+    expect(
+      findTagNames([
+        "<div><h1>Hello, world!</h1></div>",
+        "<p>Welcome to my site</p>",
+      ])
+    ).toStrictEqual(["/h1", "/div", "/p"]);
   });
 });
