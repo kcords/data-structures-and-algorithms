@@ -70,9 +70,7 @@ CHALLENGE 7 - Stretch Goal
 Write a function named findAnything that takes in an array of strings, along with a target string. Return an array containing only those strings from the original array that contain the target string.
 ------------------------------------------------------------------------------------------------ */
 
-const findAnything = (arr, target) => {
-  // Solution code here...
-};
+const findAnything = (arr, target) => arr.filter(str => str.includes(target));
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 8 - Stretch Goal
@@ -211,7 +209,7 @@ describe('Testing challenge 6', () => {
   });
 });
 
-xdescribe('Testing challenge 7', () => {
+describe('Testing challenge 7', () => {
   test('It should find all the strings that contain a given string', () => {
     const words = ['things', 'apple (:)', ':)banana', 'missing that thing', 'cant:)aloupe'];
 
