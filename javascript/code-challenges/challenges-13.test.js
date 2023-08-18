@@ -92,9 +92,7 @@ Return a two-dimensional array with the same roster, but where anyone whose name
 For example, [['Brook Testing', 'Actual Person'], ['Human Person', 'Brook again', 'still Brook']] returns [['Actual Person'], ['Human Person']]
 ------------------------------------------------------------------------------------------------ */
 
-const unenrollBrook = (arr) => {
-  // Solution code here...
-};
+const unenrollBrook = (arr) => arr.map(roster => roster.filter(name => !name.includes('Brook')));
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 10 - Stretch Goal
@@ -226,7 +224,7 @@ describe('Testing challenge 8', () => {
   });
 });
 
-xdescribe('Testing challenge 9', () => {
+describe('Testing challenge 9', () => {
   test('It should remove Brook from all courses', () => {
     const roster = [
       ['Michelle', 'Allie', 'Brook TESTING'],
