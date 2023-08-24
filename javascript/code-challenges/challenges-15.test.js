@@ -97,7 +97,11 @@ let starWarsData = [{
 }];
 
 let biggerThanLuke = (arr) => {
-  // Solution code here...
+  const { mass } = arr.find(char => char.name.includes('Luke')) || {};
+  const lukeMass = parseInt(mass);
+  return arr.filter(char => parseInt(char.mass) > lukeMass)
+    .map(match => match.name)
+    .join(' - ');
 };
 
 /* ------------------------------------------------------------------------------------------------
