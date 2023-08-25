@@ -158,8 +158,24 @@ Here is a sample board:
 ------------------------------------------------------------------------------------------------ */
 
 const detectTicTacToeWin = (board) => {
-  // Solution code here...
+  return (
+    checkSet(board[0][0], board[0][1], board[0][2]) ||
+    checkSet(board[1][0], board[1][1], board[1][2]) ||
+    checkSet(board[2][0], board[2][1], board[2][2]) ||
+    checkSet(board[0][0], board[1][0], board[2][0]) ||
+    checkSet(board[0][1], board[1][1], board[2][1]) ||
+    checkSet(board[0][2], board[1][2], board[2][2]) ||
+    checkSet(board[0][0], board[1][1], board[2][2]) ||
+    checkSet(board[0][2], board[1][1], board[2][0])
+  );
 };
+
+function checkSet(...args) {
+  for (let arg of args) {
+    if (!arg || arg !== args[0]) return false;
+  }
+  return true;
+}
 
 /* ------------------------------------------------------------------------------------------------
 TESTS
