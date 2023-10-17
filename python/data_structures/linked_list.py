@@ -16,9 +16,9 @@ class LinkedList:
     def __init__(self):
         self.head = None
 
-    def some_method(self):
-        # method body here
-        pass
+    def insert(self, value):
+        new_node = Node(value, self.head)
+        self.head = new_node
 
 
 class TargetError:

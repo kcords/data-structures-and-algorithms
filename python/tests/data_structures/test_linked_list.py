@@ -15,7 +15,6 @@ def test_empty_head():
     assert linked.head is None
 
 
-@pytest.mark.skip("TODO")
 def test_populated_head():
     linked = LinkedList()
     linked.insert("apple")
