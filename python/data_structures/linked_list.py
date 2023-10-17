@@ -16,6 +16,16 @@ class LinkedList:
     def __init__(self):
         self.head = None
 
+    def __str__(self):
+        value_strings = []
+        current = self.head
+        while current is not None:
+            value_strings.append(f"{{ {current.value} }}")
+            current = current.next
+        value_strings.append("NULL")
+        return ' -> '.join(value_strings)
+
+
     def insert(self, value):
         new_node = Node(value, self.head)
         self.head = new_node
