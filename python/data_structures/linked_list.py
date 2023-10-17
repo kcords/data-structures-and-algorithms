@@ -11,11 +11,10 @@ class Node:
 
 
 class LinkedList:
-
+    """Creates a new LinkedList"""
 
     def __init__(self):
-        # initialization here
-        pass
+        self.head = None
 
     def some_method(self):
         # method body here
