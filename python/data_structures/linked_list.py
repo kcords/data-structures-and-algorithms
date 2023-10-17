@@ -1,15 +1,42 @@
+class Node:
+    def __init__(self, value, next=None):
+        """Initializes the creation of a new Node
+
+        Args:
+            value (any): Value of the node (typically an int).
+            next (Node, optional): Pointer to the next node. Defaults to None.
+        """
+        self.value = value
+        self.next = next
+
+
 class LinkedList:
-    """
-    Put docstring here
-    """
+    """Creates a new LinkedList"""
 
     def __init__(self):
-        # initialization here
-        pass
+        self.head = None
 
-    def some_method(self):
-        # method body here
-        pass
+    def __str__(self):
+        value_strings = []
+        current = self.head
+        while current is not None:
+            value_strings.append(f"{{ {current.value} }}")
+            current = current.next
+        value_strings.append("NULL")
+        return ' -> '.join(value_strings)
+
+
+    def insert(self, value):
+        new_node = Node(value, self.head)
+        self.head = new_node
+
+    def includes(self, value):
+        current = self.head
+        while current is not None:
+            if current.value == value:
+                return True
+            current = current.next
+        return False
 
 
 class TargetError:
