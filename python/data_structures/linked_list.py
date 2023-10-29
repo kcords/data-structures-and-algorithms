@@ -38,6 +38,37 @@ class LinkedList:
             current = current.next
         return False
 
+    def append(self, val):
+        if self.head == None:
+            self.head = Node(val)
+            return
+        current = self.head
+        while current.next is not None:
+            current = current.next
+        current.next = Node(val)
 
-class TargetError:
+    def insert_before(self, val, new_val):
+        current = self.head
+        while current.next is not None:
+            if current.next.value == val:
+                new_node = Node(new_val)
+                new_node.next = current.next
+                current.next = new_node
+                return
+            current = current.next
+        raise TargetError(f"{val} not found in linked list")
+
+    def insert_after(self, val, new_val):
+        current = self.head
+        while current is not None:
+            if current.value == val:
+                new_node = Node(new_val)
+                new_node.next = current.next
+                current.next = new_node
+                return
+            current = current.next
+        raise TargetError(f"{val} not found in linked list")
+
+
+class TargetError(Exception):
     pass
