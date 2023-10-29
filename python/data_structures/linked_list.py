@@ -48,10 +48,14 @@ class LinkedList:
         current.next = Node(val)
 
     def insert_before(self, val, new_val):
+        new_node = Node(new_val)
         current = self.head
+        if self.head.value == val:
+            new_node.next = self.head
+            self.head = new_node
+            return
         while current.next is not None:
             if current.next.value == val:
-                new_node = Node(new_val)
                 new_node.next = current.next
                 current.next = new_node
                 return

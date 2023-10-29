@@ -74,6 +74,16 @@ def test_append_existing_list(default_linked_list):
     assert str(default_linked_list) == f"{{ apple }} -> {{ banana }} -> {{ pear }} -> {{ {new_item} }} -> NULL"
 
 
+def test_append_multiple_existing_list(default_linked_list):
+    new_item1 = "cherry"
+    new_item2 = "grape"
+    default_linked_list.append(new_item1)
+    default_linked_list.append(new_item2)
+    assert default_linked_list.includes(new_item1)
+    assert default_linked_list.includes(new_item2)
+    assert str(default_linked_list) == f"{{ apple }} -> {{ banana }} -> {{ pear }} -> {{ {new_item1} }} -> {{ {new_item2} }} -> NULL"
+
+
 def test_append_empty_list():
     linked_list = LinkedList()
     new_item = "new_item"
@@ -82,7 +92,14 @@ def test_append_empty_list():
     assert str(linked_list) == f"{{ {new_item} }} -> NULL"
 
 
-def test_insert_before_valid(default_linked_list):
+def test_insert_before_first(default_linked_list):
+    new_item = "cherry"
+    default_linked_list.insert_before("apple", new_item)
+    assert default_linked_list.includes(new_item)
+    assert str(default_linked_list) == f"{{ {new_item} }} -> {{ apple }} -> {{ banana }} -> {{ pear }} -> NULL"
+
+
+def test_insert_before_middle(default_linked_list):
     new_item = "cherry"
     default_linked_list.insert_before("banana", new_item)
     assert default_linked_list.includes(new_item)
@@ -96,11 +113,18 @@ def test_insert_before_invalid(default_linked_list):
         default_linked_list.insert_before(invalid_item, new_item)
 
 
-def test_insert_after_valid(default_linked_list):
+def test_insert_after_middle(default_linked_list):
     new_item = "cherry"
     default_linked_list.insert_after("banana", new_item)
     assert default_linked_list.includes(new_item)
     assert str(default_linked_list) == f"{{ apple }} -> {{ banana }} -> {{ {new_item} }} -> {{ pear }} -> NULL"
+
+
+def test_insert_after_last(default_linked_list):
+    new_item = "cherry"
+    default_linked_list.insert_after("pear", new_item)
+    assert default_linked_list.includes(new_item)
+    assert str(default_linked_list) == f"{{ apple }} -> {{ banana }} -> {{ pear }} -> {{ {new_item} }} -> NULL"
 
 
 def test_insert_after_invalid(default_linked_list):
