@@ -134,6 +134,35 @@ def test_insert_after_invalid(default_linked_list):
         default_linked_list.insert_after(invalid_item, new_item)
 
 
+def test_kth_from_end(default_linked_list):
+    expected = "banana"
+    actual = default_linked_list.kth_from_end(1)
+    assert actual == expected
+
+
+def test_kth_from_end_greater_than_len(default_linked_list):
+    with pytest.raises(TargetError):
+        default_linked_list.kth_from_end(5)
+
+
+def test_kth_from_end_same_as_len(default_linked_list):
+    with pytest.raises(TargetError):
+        default_linked_list.kth_from_end(3)
+
+
+def test_kth_from_end_as_negative(default_linked_list):
+    with pytest.raises(TargetError):
+        default_linked_list.kth_from_end(-1)
+
+
+def test_kth_from_end_len_of_one():
+    expected = 1
+    single_node_ll = LinkedList()
+    single_node_ll.insert(expected)
+    actual = single_node_ll.kth_from_end(0)
+    assert actual == expected
+
+
 @pytest.fixture
 def default_linked_list():
     linked_list = LinkedList()
