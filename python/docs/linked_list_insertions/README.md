@@ -10,4 +10,4 @@ Each of these methods traverse the linked list until reaching either the desired
 All three methods are O(n) time complexity and O(1) space complexity.
 
 ## Solution
-Testing can be performed by running `pywatch` or accessing the file directly using `python3 data_structures/linked_list.py`
+Testing can be performed by running `pytest` or accessing the file directly using `python3 data_structures/linked_list.py`
