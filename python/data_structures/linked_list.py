@@ -25,7 +25,6 @@ class LinkedList:
         value_strings.append("NULL")
         return ' -> '.join(value_strings)
 
-
     def insert(self, value):
         new_node = Node(value, self.head)
         self.head = new_node
@@ -73,6 +72,25 @@ class LinkedList:
             current = current.next
         raise TargetError(f"{val} not found in linked list")
 
+    def kth_from_end(self, k):
+        nodes = []
+        current = self.head
+        while k >= 0 and current is not None:
+            nodes.append(current)
+            current = current.next
+        if k < 0 or k >= len(nodes):
+            raise TargetError(f"{k} is not a valid node")
+        kth_node = nodes[-k - 1]
+        return kth_node.value
 
 class TargetError(Exception):
     pass
+
+if __name__ == "__main__":
+    ll = LinkedList()
+    ll.append(1)
+    ll.append(2)
+    ll.append(3)
+    print(ll.kth_from_end(2))
+    print(ll.kth_from_end(1))
+    print(ll.kth_from_end(0))
